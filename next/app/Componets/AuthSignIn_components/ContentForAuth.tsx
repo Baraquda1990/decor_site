@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { Input } from "@heroui/react";
+import { Input,Alert } from "@heroui/react";
+/*
+Компонент для содержимого модального окна Авторизации
+*/
 const EyeSlashFilledIcon = ({className}:{className:string}) => {
   return (
     <svg
@@ -58,12 +61,46 @@ const EyeFilledIcon = ({className}:{className:string}) => {
       />
     </svg>
   )}
-export default function ContentForAuth(){
+type mesType={
+  title:string,
+  description:string,
+  visible:boolean
+}
+type contentForAuthType={
+  successMes:mesType,
+  errorMes:mesType,
+  setUsername:(value:string)=>void,
+  setPassword:(value:string)=>void
+}
+
+export default function ContentForAuth({successMes,errorMes,setUsername,setPassword}:contentForAuthType){
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     return(
     <div className="flex flex-col space-y-3">
-      <Input label="Логин" type="text" variant="bordered" className="w-full" />
+    <Alert
+      color="success"
+      description={successMes.description}
+      isVisible={successMes.visible}
+      title={successMes.title}
+      variant="faded"
+      onClose={() => setIsVisible(false)}
+    />
+    <Alert
+      color="danger"
+      description={errorMes.description}
+      isVisible={errorMes.visible}
+      title={errorMes.title}
+      variant="faded"
+      onClose={() => setIsVisible(false)}
+    />
+      <Input 
+        label="Логин" 
+        type="text"
+        onChange={(e)=>{setUsername(e.target.value)}}
+        variant="bordered" 
+        className="w-full"
+      />
       <Input
         className="w-full"
           endContent={
@@ -80,6 +117,7 @@ export default function ContentForAuth(){
               )}
             </button>
           }
+          onChange={(e)=>{setPassword(e.target.value)}}
           label="Пароль"
           type={isVisible ? "text" : "password"}
           variant="bordered"

@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { Input } from "@heroui/react";
+import { Input,Alert } from "@heroui/react";
+import { errorsType } from "./ModalAuthSignIn";
+/*
+Компонент для отображения содержимого модального окна регистрации
+*/
 const EyeSlashFilledIcon = ({className}:{className:string}) => {
   return (
     <svg
@@ -58,12 +62,36 @@ const EyeFilledIcon = ({className}:{className:string}) => {
       />
     </svg>
   )}
-export default function ContentSignIn(){
+type contentSignInType={
+  setUsername:(value:string)=>void,
+  setPassword1:(value:string)=>void,
+  setPassword2:(value:string)=>void,
+  errors:errorsType
+}
+
+export default function ContentSignIn({setUsername,setPassword1,setPassword2,errors}:contentSignInType){
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     return(
     <div className="flex flex-col space-y-3">
-      <Input label="Придумайте логин" type="text" variant="bordered" className="w-full" />
+      <Alert
+        color="danger"
+        description={errors.non_field_errors?.map((error,i)=>(<div key={i}>{error}</div>))}
+        isVisible={errors.non_field_errors!==undefined}
+        title="Ошибка"
+        variant="faded"
+        onClose={() => setIsVisible(false)}
+      />
+      <Input 
+        label="Придумайте логин" 
+        type="text" 
+        onChange={(e)=>{setUsername(e.target.value)}} 
+        variant="bordered" 
+        className="w-full" 
+        errorMessage={errors.username!==undefined && errors.username.map((error,i)=>(<div key={i}>{error}</div>))}
+        isInvalid={errors.username!==undefined}
+      />
+
       <Input
         className="w-full"
           endContent={
@@ -82,8 +110,12 @@ export default function ContentSignIn(){
           }
           label="Введите пароль"
           type={isVisible ? "text" : "password"}
+          onChange={(e)=>{setPassword1(e.target.value)}}
           variant="bordered"
+          errorMessage={errors.password!==undefined && errors.password.map((error,i)=>(<div key={i}>{error}</div>))}
+          isInvalid={errors.password!==undefined}
       />
+
       <Input
         className="w-full"
           endContent={
@@ -102,7 +134,10 @@ export default function ContentSignIn(){
           }
           label="Повторите пароль"
           type={isVisible ? "text" : "password"}
+          onChange={(e)=>{setPassword2(e.target.value)}}
           variant="bordered"
+          errorMessage={errors.re_password!==undefined && errors.re_password.map((error,i)=>(<div key={i}>{error}</div>))}
+          isInvalid={errors.re_password!==undefined}
       />
     </div>
     )

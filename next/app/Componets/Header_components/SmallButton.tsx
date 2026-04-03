@@ -1,18 +1,20 @@
 'use client'
-import { Button } from '@heroui/react'
-
+import { Button,Badge } from '@heroui/react'
+/*
+Кнопки Корзины, Избранного и Пользователя
+*/
 export const SvgUser = () => {
   return (              
     <svg fill="#fff" width="16" height="16" viewBox="0 0 36 36" version="1.1">
         <title>user-solid</title>
-        <path d="M30.61,24.52a17.16,17.16,0,0,0-25.22,0,1.51,1.51,0,0,0-.39,1v6A1.5,1.5,0,0,0,6.5,33h23A1.5,1.5,0,0,0,31,31.5v-6A1.51,1.51,0,0,0,30.61,24.52Z" class="clr-i-solid clr-i-solid-path-1"></path><circle cx="18" cy="10" r="7" class="clr-i-solid clr-i-solid-path-2"></circle>
-        <rect x="0" y="0" width="36" height="36" fill-opacity="0"/>
+        <path d="M30.61,24.52a17.16,17.16,0,0,0-25.22,0,1.51,1.51,0,0,0-.39,1v6A1.5,1.5,0,0,0,6.5,33h23A1.5,1.5,0,0,0,31,31.5v-6A1.51,1.51,0,0,0,30.61,24.52Z" className="clr-i-solid clr-i-solid-path-1"></path><circle cx="18" cy="10" r="7" className="clr-i-solid clr-i-solid-path-2"></circle>
+        <rect x="0" y="0" width="36" height="36" fillOpacity="0"/>
     </svg>                                          
   )
 }
 export const SvgCart = () => {
   return (
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 6H21" stroke="white" stroke-width="2" stroke-linecap="round"></path><path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>                                           
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M3 6H21" stroke="white" strokeWidth="2" strokeLinecap="round"></path><path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>                                           
   )
 }
 const SvgFavourites = () => {
@@ -22,9 +24,10 @@ const SvgFavourites = () => {
 }
 type SmallButtonProps={
     type: "user" | "cart" | "favourites",
-    onPress:()=>void,
+    onPress?:()=>void,
+    count?:number
 }
-export default function SmallButton({type,onPress}:SmallButtonProps){
+export default function SmallButton({type,onPress,count}:SmallButtonProps){
     let svg_elem:React.ReactElement | null= null
         switch(type){
             case 'user':
@@ -39,8 +42,15 @@ export default function SmallButton({type,onPress}:SmallButtonProps){
         }
     if(!svg_elem) return null
     return(
-        <Button className='bg-primary rounded-full mx-1.5' isIconOnly={true} onPress={()=>onPress()}>
+    <Badge color="warning" 
+            content={count}
+            variant="solid"
+            isInvisible={count==0?true:false}
+            size='lg'
+    >
+        <Button className='bg-primary rounded-full mx-1.5' isIconOnly={true} onPress={onPress}>
             {svg_elem}
         </Button>
+    </Badge>
     )
 }

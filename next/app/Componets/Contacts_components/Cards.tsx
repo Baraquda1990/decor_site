@@ -1,5 +1,8 @@
 import Card from "./Card";
 import { Url } from 'next/dist/shared/lib/router/router'
+/*
+Компоненты отображения контактов администратора. 
+*/
 type CardType={
     caption:string,
     text:string,

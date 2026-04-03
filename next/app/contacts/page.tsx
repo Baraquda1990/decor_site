@@ -1,12 +1,22 @@
 import { Onest } from 'next/font/google'
 const onest=Onest({subsets:['cyrillic']})
 import {Phone,Email, Telegram, Adress,WorkingHours, Instagram} from "../Componets/Contacts_components/Cards"
+import Feedback from '../Componets/Contacts_components/Feedback'
+import type { Metadata } from 'next'
+/*
+Страница с контактами администратора
+*/
+export const metadata: Metadata = {
+  title: 'Контакты',
+  description: 'Страница с контактами владельца сайта',
+  keywords: ['аренда', 'товары', 'каталог','контакты']
+}
 export default function Contacts(){
     return(
         <main className="min-h-screen bg-white pb-[60px] lg:pb-0">
         <div className="max-w-[1260px] mx-auto px-[15px] lg:px-[30px] pt-[80px] lg:pt-[120px] pb-[10px] lg:pb-[20px]">
             <h1 className={`${onest.className} font-bold text-[24px] lg:text-[36px] text-[#3d4a2e] uppercase tracking-wide`}>Контакты</h1>
-            <p className='font-onest text-[14px] lg:text-[16px] text-gray-500 mt-2'>Свяжитесь с нами удобным способом </p>
+            <p className={`${onest.className} text-[14px] lg:text-[16px] text-gray-500 mt-2`}>Свяжитесь с нами удобным способом </p>
         </div>
         <div className="max-w-[1260px] mx-auto px-[15px] lg:px-[30px] py-[20px] lg:py-[40px]">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-[30px] lg:mb-[40px]">
@@ -50,19 +60,7 @@ export default function Contacts(){
                     <p className={`${onest.className} text-[13px] text-gray-400 mt-3 px-1`}>В нашем шоуруме можно посмотреть арендное оборудование и подобрать декор для вашего мероприятия</p>
                 </div>
                 <div className='lg:col-span-2'>
-                    <div className='bg-white border border-gray-200 rounded-[12px] p-6'>
-                        <h2 className='font-onest font-bold text-[18px] lg:text-[20px] text-[#3d4a2e] mb-[20px]'>
-                            Остались вопросы? 
-                        </h2>
-                        <form className='space-y-[15px]' action="">
-                            <input type="text" placeholder='Имя' className='w-full h-[50px] lg:h-[60px] px-[20px] bg-white border border-[#dfe8cc] rounded-[10px] text-[14px] lg:text-[16px] text-[#5B5C5E] placeholder-[#B8B8B8] focus:outline-none focus:border-[#aeca73] transition-colors' />
-                            <input type="text" placeholder="+7 (000) 000-00-00" className='w-full h-[50px] lg:h-[60px] px-[20px] bg-white border border-[#dfe8cc] rounded-[10px] text-[14px] lg:text-[16px] text-[#5B5C5E] placeholder-[#B8B8B8] focus:outline-none focus:border-[#aeca73] transition-colors' />
-                            <textarea name="" id="" placeholder="Ваш вопрос" rows={4} className='w-full px-[20px] py-[15px] bg-white border border-[#dfe8cc] rounded-[10px] text-[14px] lg:text-[16px] text-[#5B5C5E] placeholder-[#B8B8B8] focus:outline-none focus:border-[#aeca73] transition-colors resize-none'></textarea>
-                            <button className='w-full h-[50px] lg:h-[60px] rounded-[10px] bg-[#aeca73] text-white text-[14px] lg:text-[16px] font-bold font-onest uppercase tracking-wide hover:bg-[#8fb55a] transition-colors disabled:opacity-50 flex items-center justify-center'>
-                                Отправить заявку
-                            </button>
-                        </form>
-                    </div>
+                    <Feedback/>
                 </div>
 
             </div>

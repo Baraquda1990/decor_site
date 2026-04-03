@@ -1,5 +1,11 @@
 'use client'
 import {Input} from "@heroui/react";
+import apiService from "@/app/services/apiService";
+import { useState,useEffect } from "react";
+import useSearch from "../hooks/useSearch";
+/*
+Компонент поиска товара на сайте
+*/
 export const SearchIcon = (props?: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
@@ -31,9 +37,33 @@ export const SearchIcon = (props?: React.SVGProps<SVGSVGElement>) => {
 };
 
 export default function Search_input(){
+    const stateSearch=useSearch()
+    const [query,setQuery]=useState('')
+    useEffect(() => {
+      if(!query.length){
+        stateSearch.close()
+      }
+      /*if (query.length < 1) {
+        stateSearch.setItems([])
+        return
+      }*/
+      const controller = new AbortController()
+      const timeout = setTimeout(async () => {
+        const res = await apiService.getSearch(`/search?search=${query}`,controller.signal)
+        stateSearch.setItems(res.results)
+        stateSearch.setNext(res.next)
+        stateSearch.setPrevious(res.previous)
+      }, 300)
+      return () => {
+        clearTimeout(timeout)
+        controller.abort()
+      }
+    }, [query])
+    useEffect(()=>{
+      if(!stateSearch.isOpen) setQuery('')
+    },[stateSearch.isOpen])
     return(
     <Input
-        isClearable
         classNames={{
           label: "text-black/50 dark:text-white/90",
           input: [
@@ -56,6 +86,9 @@ export default function Search_input(){
             "rounded-full"
           ],
         }}
+        onChange={(e)=>{setQuery(e.target.value);stateSearch.open()}}
+        onClick={(e)=>{e.stopPropagation()}}
+        value={query}
         placeholder="Поиск по каталогу"
         radius="lg"
         startContent={

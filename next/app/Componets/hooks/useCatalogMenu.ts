@@ -7,6 +7,6 @@ interface catalogMenu{
 const useCatalogMenu=create<catalogMenu>((set)=>({
     isOpen:false,
     open:()=>set({isOpen:true}),
-    close:()=>set({isOpen:false})
+    close:()=>set({isOpen:false}),
 }))
 export default useCatalogMenu
