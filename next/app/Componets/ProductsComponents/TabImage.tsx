@@ -33,7 +33,7 @@ export default function TabImage({id,image,images,userId}:props){
                     className="w-[100px] h-[100px]"
                     title={
                         <img src={img.image_url} alt="Photos" 
-                            className="w-full"/>
+                            className="w-auto h-[100px] object-cover"/>
                     }
                     onClick={()=>{setCurrentImg(img.image_url)}}
                     >
