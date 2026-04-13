@@ -189,9 +189,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 PHONENUMBER_DEFAULT_REGION = "RU"
 PHONENUMBER_DEFAULT_FORMAT = "E164"
 
-
-# Импорт локальных настроек
-try:
-    from .settings_local import *
-except ImportError:
-    pass

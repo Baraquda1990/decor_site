@@ -31,7 +31,7 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = ["64.226.81.32"]
 
-WEBSITE_URL='http://127.0.0.1:8000'
+WEBSITE_URL='http://85.29.147.68'
 # Application definition
 
 INSTALLED_APPS = [
@@ -127,9 +127,9 @@ WSGI_APPLICATION = 'decor_site.wsgi.application'
 DATABASES={
     'default':{
         'ENGINE':'django.db.backends.postgresql',
-        'NAME':'decor_site',
+        'NAME':'decor',
         'USER':'postgres',
-        'PASSWORD':'Venom1990++',
+        'PASSWORD':'Sql12345',
         'HOST':'localhost',
         'PORT':5432,
     }
