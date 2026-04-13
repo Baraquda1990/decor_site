@@ -19,15 +19,15 @@ type props={
 export default function TabImage({id,image,images,userId}:props){
     const [currentImg,setCurrentImg]=useState(image)
     const [modalOpen,setModalOpen]=useState(false)
-    images.push({
-        id:images.length+10,
-        image_url:image
-    })
+    const allImages = [
+    { id: 0, image_url: image },
+    ...images
+    ]
   return (
     <div className="flex relative">
         <ButtonFav id={id} userId={userId}/>
         <Tabs aria-label="Options" isVertical={true}>
-            {images.map((img)=>(
+            {allImages.map((img)=>(
                 <Tab 
                     key={img.id}
                     className="w-[100px] h-[100px]"

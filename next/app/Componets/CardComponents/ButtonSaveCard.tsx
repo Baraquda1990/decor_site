@@ -2,6 +2,7 @@
 import apiService from "@/app/services/apiService"
 import { useRouter } from "next/navigation"
 import { addToast } from "@heroui/react"
+import useCount from "../hooks/useCount"
 /*
 Компонент сохранения корзины и соответсвенно перевода корзины в статус "Арендован"
 */
@@ -9,6 +10,7 @@ type props={
     userId:string|null
 }
 export default function ButtonSaveCard({userId}:props){
+    const stateUseCount=useCount()
     if(!userId) return
     const router=useRouter()
     const handleClick=async ()=>{
@@ -19,6 +21,7 @@ export default function ButtonSaveCard({userId}:props){
             description: "Ожидайте, скоро наш специалист с Вами свяжется!",
             color:'success'
         })
+        stateUseCount.set_card_count(0)
         router.push('/')
         }else{
         addToast({

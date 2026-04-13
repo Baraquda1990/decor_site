@@ -31,7 +31,7 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = ["64.226.81.32"]
 
-WEBSITE_URL='http://85.29.147.68'
+WEBSITE_URL='http://127.0.0.1:8000'
 # Application definition
 
 INSTALLED_APPS = [
@@ -127,9 +127,9 @@ WSGI_APPLICATION = 'decor_site.wsgi.application'
 DATABASES={
     'default':{
         'ENGINE':'django.db.backends.postgresql',
-        'NAME':'decor',
+        'NAME':'decor_site',
         'USER':'postgres',
-        'PASSWORD':'Sql12345',
+        'PASSWORD':'Venom1990++',
         'HOST':'localhost',
         'PORT':5432,
     }
@@ -189,9 +189,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 PHONENUMBER_DEFAULT_REGION = "RU"
 PHONENUMBER_DEFAULT_FORMAT = "E164"
 
-
-# Импорт локальных настроек
-try:
-    from .settings_local import *
-except ImportError:
-    pass

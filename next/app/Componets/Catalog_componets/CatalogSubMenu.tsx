@@ -9,7 +9,7 @@ export default function CatalogSubMenu(){
     const stateCatalogSubMenu=useCatalogSubMenu()
     const stateCatalogMenu=useCatalogMenu()
     const router=useRouter()
-    const content=(<div className="fixed bg-white shadow-xl flex flex-col left-[282px] top-[80px] bottom-0 w-[280px]" 
+    const content=(<div className="fixed bg-white shadow-xl flex flex-col left-[282px] top-[80px] bottom-0 w-[280px] z-20" 
         onMouseEnter={()=>{stateCatalogSubMenu.setMouseEnter(true)}}
         onMouseLeave={()=>{setTimeout(()=>{stateCatalogSubMenu.close()},500);stateCatalogSubMenu.setMouseEnter(false)}}
     >

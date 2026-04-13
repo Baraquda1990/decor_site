@@ -22,7 +22,7 @@ type calalogMenuType={
 export default async function Home() {
   const catalogData:calalogMenuType[]=await apiService.getWithoutToken('/listcatalog/')
   return (
-    <div className="mt-[80px]">
+    <div className="mt-[80px] pb-[80px]">
       <section className="mx-auto overflow-hidden max-w-[1260px]">
         <div className="px-[30px] sm:px-[30px]">
           <div className="w-full">
