@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 */
 export async function handleRefresh() {
     const refreshToken = await getRefreshToken();
-    const token = await fetch(`${process.env.NEXT_PUBLIC_DJANGO_HOST}/auth/jwt/refresh/`, {
+    const token = await fetch(`${process.env.NEXT_PUBLIC_DJANGO_HOST}/api/auth/jwt/refresh/`, {
         method: 'POST',
         body: JSON.stringify({
             refresh: refreshToken
