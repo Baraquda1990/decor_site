@@ -113,6 +113,9 @@ NEXT_PUBLIC_NEXT_HOST=http://127.0.0.1:3000
 ![alt-текст](screen/screen_02.png "Скрин сайта")
 
 ---
-  <video controls="controls">
-   <source src="./Декор.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-  </video>
+
+
+https://github.com/user-attachments/assets/4ae1dfbe-df0f-44dd-87dc-d145bc11bdfe
+
+
+https://github.com/user-attachments/assets/5ba47e5b-4590-4176-9e58-0c4bcb04cdf9
